@@ -1,6 +1,10 @@
 # MyApp
 
+<<<<<<< HEAD
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.5.
+=======
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.3.
+>>>>>>> 0105d8d7146514bc9d2f3ea85f7a5652934ed56e
 
 ## Development server
 

@@ -18,6 +18,7 @@
         </mat-form-field>
         <div style='padding-left: 10%;'>
           <div class="checkbox-style">
+            <mat-checkbox>Select All</mat-checkbox><br>
             <label formArrayName="orders" *ngFor="let order of dateValue.controls.orders.controls; let i = index">
               <!-- <input type="checkbox" [formControlName]="i" value="{{orders[i].projectid}}" (click)="getValue()">{{orders[i].projectname}}<br> -->
               <mat-checkbox value="{{orders[i].projectid}}" (change)="getValue(orders[i].projectid, $event)">{{orders[i].projectname}}</mat-checkbox><br>
