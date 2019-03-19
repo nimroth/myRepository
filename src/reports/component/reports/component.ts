@@ -8,11 +8,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { format } from 'url';
 
 export interface PeriodicElement {
-  userid: string;
+  Userid: string;
   projectid: string;
   projectname: string;
   sumvalue: string;
   email: string;
+  sumactual: string;
+  sumbillable: string;
 }
 
 // const ELEMENT_DATA: PeriodicElement[] = [
@@ -35,10 +37,13 @@ export interface PeriodicElement {
 })
 export class ReportsComponent implements OnInit {
 
-  displayedColumns: string[] = ['userid', 'projectid', 'projectname', 'sumvalue', 'email'];
-  dataSource: any[] = [];
+  projectDisplayedColumns: string[] = ['projectid', 'projectname', 'sumvalue', 'sumactual', 'sumbillable'];
+  userDisplayedColumns: string[] = ['Userid', 'projectid', 'projectname', 'sumvalue', 'email', 'sumactual', 'sumbillable'];
+  dataSourceProject: any[] = [];
+  dataSourceUser: any[] = [];
   providerRes: any[] = [];
-  showList: any;
+  showProjectList: any;
+  showUserList: any;
   dateValue: FormGroup;
   checkedValue = new Set([]);
 
@@ -113,7 +118,6 @@ export class ReportsComponent implements OnInit {
     });
     console.log('dat = ', dat );
     if (this.dateValue.valid) {
-      this.showList = true;
       // const fromDateVal = new Date(this.dateValue.value.fromDate).getDate();
       // const fromMonthVal = new Date(this.dateValue.value.fromDate).getMonth();
       // const fromYearVal = new Date(this.dateValue.value.fromDate).getFullYear();
@@ -132,13 +136,23 @@ export class ReportsComponent implements OnInit {
         .subscribe((data: any) => {
           if (data) {
             if (data.status === 'success') {
-              this.dataSource = data.payload;
+              if (data.payload.reportperproject) {
+                this.dataSourceProject = data.payload.reportperproject;
+                this.showProjectList = true;
+              }
+              if (data.payload.reportperuser) {
+                this.dataSourceUser = data.payload.reportperuser;
+                this.showUserList = true;
+              }
+              console.log('payload project= ', data.payload.reportperproject);
+              console.log('payload User= ', data.payload.reportperuser);
+              // this.dataSource = data.payload;
             }
           }
         });
     } else {
       // this.dataSource = ELEMENT_DATA;
-      this.showList = true;
+      // this.showProjectList = true;
     }
   }
 }

@@ -29,13 +29,8 @@
         <!-- </div> -->
     </form>
   </mat-card>
-  <mat-card *ngIf="showList">
-    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-      <ng-container matColumnDef="userid">
-        <mat-header-cell *matHeaderCellDef> User ID </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.userid}} </mat-cell>
-      </ng-container>
-    
+  <mat-card *ngIf="showProjectList">
+    <mat-table [dataSource]="dataSourceProject" class="mat-elevation-z8">
       <ng-container matColumnDef="projectid">
         <mat-header-cell *matHeaderCellDef> Project Id </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.projectid}} </mat-cell>
@@ -47,17 +42,64 @@
       </ng-container>
     
       <ng-container matColumnDef="sumvalue">
-        <mat-header-cell *matHeaderCellDef> Sum Value </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> Sum of Estimated Hrs </mat-header-cell>
         <mat-cell *matCellDef="let element">{{element.sumvalue}} </mat-cell>
       </ng-container>
+
+      <ng-container matColumnDef="sumactual">
+        <mat-header-cell *matHeaderCellDef> Sum of Actual Hrs </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.sumactual}} </mat-cell>
+      </ng-container>
     
+      <ng-container matColumnDef="sumbillable">
+        <mat-header-cell *matHeaderCellDef> Sum of Billable Hrs </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.sumbillable}} </mat-cell>
+      </ng-container>
+    
+      <mat-header-row *matHeaderRowDef="projectDisplayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: projectDisplayedColumns;"></mat-row>
+    </mat-table>
+  </mat-card>
+  <mat-card *ngIf="showUserList">
+    <!-- {{dataSourceUser.username | json}} -->
+    <mat-table [dataSource]="dataSourceUser" class="mat-elevation-z8">
+      <ng-container matColumnDef="Userid">
+        <mat-header-cell *matHeaderCellDef>User Id </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Userid}} </mat-cell>
+      </ng-container>
+
       <ng-container matColumnDef="email">
         <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
       </ng-container>
+      
+      <ng-container matColumnDef="projectid">
+        <mat-header-cell *matHeaderCellDef> Project Id </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.projectid}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="projectname">
+          <mat-header-cell *matHeaderCellDef> Project Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.projectname}} </mat-cell>
+      </ng-container>
     
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      <ng-container matColumnDef="sumvalue">
+        <mat-header-cell *matHeaderCellDef> Sum of Estimated Hrs </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.sumvalue}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="sumactual">
+        <mat-header-cell *matHeaderCellDef> Sum of Actual Hrs </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.sumactual}} </mat-cell>
+      </ng-container>
+    
+      <ng-container matColumnDef="sumbillable">
+        <mat-header-cell *matHeaderCellDef> Sum of Billable Hrs </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.sumbillable}} </mat-cell>
+      </ng-container>
+    
+      <mat-header-row *matHeaderRowDef="userDisplayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: userDisplayedColumns;"></mat-row>
     </mat-table>
   </mat-card>
 </div>
