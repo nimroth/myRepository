@@ -31,6 +31,7 @@
     </form>
   </mat-card>
   <mat-card *ngIf="showProjectList">
+      <button mat-raised-button color="primary" (click)='exportExcel(dataSourceProject)'>Export the Project List</button>
     <mat-table [dataSource]="dataSourceProject" class="mat-elevation-z8">
       <ng-container matColumnDef="projectid">
         <mat-header-cell *matHeaderCellDef> Project Id </mat-header-cell>
@@ -62,7 +63,7 @@
     </mat-table>
   </mat-card>
   <mat-card *ngIf="showUserList">
-    <!-- {{dataSourceUser.username | json}} -->
+    <button mat-raised-button color="primary" (click)='exportExcel(dataSourceUser)'>Export the User List</button>
     <mat-table [dataSource]="dataSourceUser" class="mat-elevation-z8">
       <ng-container matColumnDef="Userid">
         <mat-header-cell *matHeaderCellDef>User Id </mat-header-cell>

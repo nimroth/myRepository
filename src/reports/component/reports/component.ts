@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
+import {ExcelService} from '../../../shared/service/excel/excel.service';
 import { map } from 'rxjs/operators';
 import { DatePipe } from '@angular/common';
 
@@ -68,7 +69,8 @@ export class ReportsComponent implements OnInit {
   constructor(
     private webService: WebService,
     private formBuilder: FormBuilder,
-    public datepipe: DatePipe
+    public datepipe: DatePipe,
+    private excelService: ExcelService
   ) {
     this.dateValue = this.formBuilder.group({
       orders: new FormArray([]),
@@ -112,47 +114,33 @@ export class ReportsComponent implements OnInit {
   }
 
   submitDate() {
-    let dat = '';
+    let chkBoxVal = '';
     this.checkedValue.forEach(data => {
-      dat += `${data},`;
+      chkBoxVal += `${data},`;
     });
-    console.log('dat = ', dat );
     if (this.dateValue.valid) {
-      // const fromDateVal = new Date(this.dateValue.value.fromDate).getDate();
-      // const fromMonthVal = new Date(this.dateValue.value.fromDate).getMonth();
-      // const fromYearVal = new Date(this.dateValue.value.fromDate).getFullYear();
-      // const fromDateFormat = fromDateVal + fromMonthVal + fromYearVal;
-      // const toDateVal = new Date(this.dateValue.value.fromDate).getDate();
-      // const toMonthVal = new Date(this.dateValue.value.fromDate).getMonth();
-      // const toYyearVal = new Date(this.dateValue.value.fromDate).getFullYear();
-      // const fromDateVal = dateVal + monthVal + yearVal;
-      // const fromDateVal = this.dateValue.value.fromDate | date: format;
-      // this.dateValue.value.fromDate = new Date();
-      const fromDateVa = this.datepipe.transform(this.dateValue.value.fromDate, 'yyyy-MM-dd');
-      const toDateVa = this.datepipe.transform(this.dateValue.value.toDate, 'yyyy-MM-dd');
-      console.log('date = ', fromDateVa);
-      this.webService.getRequest('/' + fromDateVa + '/' + toDateVa + '/' + dat, null)
+      const fromDateVal = this.datepipe.transform(this.dateValue.value.fromDate, 'yyyy-MM-dd');
+      const toDateVal = this.datepipe.transform(this.dateValue.value.toDate, 'yyyy-MM-dd');
+      this.webService.getRequest('/' + fromDateVal + '/' + toDateVal + '/' + chkBoxVal, null)
         // .pipe(map((res: any) => res.json()))
-        .subscribe((data: any) => {
-          if (data) {
-            if (data.status === 'success') {
-              if (data.payload.reportperproject) {
-                this.dataSourceProject = data.payload.reportperproject;
-                this.showProjectList = true;
-              }
-              if (data.payload.reportperuser) {
-                this.dataSourceUser = data.payload.reportperuser;
-                this.showUserList = true;
-              }
-              console.log('payload project= ', data.payload.reportperproject);
-              console.log('payload User= ', data.payload.reportperuser);
-              // this.dataSource = data.payload;
+      .subscribe((data: any) => {
+        if (data) {
+          if (data.status === 'success') {
+            if (data.payload.reportperproject) {
+              this.dataSourceProject = data.payload.reportperproject;
+              this.showProjectList = true;
+            }
+            if (data.payload.reportperuser) {
+              this.dataSourceUser = data.payload.reportperuser;
+              this.showUserList = true;
             }
           }
-        });
-    } else {
-      // this.dataSource = ELEMENT_DATA;
-      // this.showProjectList = true;
+        }
+      });
     }
+  }
+
+  exportExcel(data) {
+    this.excelService.exportAsExcelFile(data, 'data');
   }
 }
