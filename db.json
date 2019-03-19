@@ -1,0 +1,74 @@
+{
+  "employees": [
+    {
+      "providerId": 1,
+      "firstName": "Sebastian",
+      "lastName": "Eschweiler",
+      "email": "sebastian@codingthesmartway.com",
+      "status": 2000
+    },
+    {
+      "providerId": 2,
+      "firstName": "Steve",
+      "lastName": "Palmer",
+      "email": "steve@codingthesmartway.com",
+      "status": 2000
+    },
+    {
+      "providerId": 3,
+      "firstName": "Ann",
+      "lastName": "Smith",
+      "email": "ann@codingthesmartway.com",
+      "status": 2000
+    },
+    {
+      "providerId": 4,
+      "firstName": "John",
+      "lastName": "Mark",
+      "email": "mark@gmail.com",
+      "status": 2000
+    },
+    {
+      "providerId": 5,
+      "firstName": "Jane",
+      "lastName": "SS",
+      "email": "jane@codingthesmartway.com",
+      "status": 2000
+    },
+    {
+      "providerId": 6,
+      "firstName": "Acley",
+      "lastName": "Jel",
+      "email": "acleygel@codingthesmartway.com",
+      "status": 2000
+    },
+    {
+      "providerId": 7,
+      "firstName": "Smith",
+      "lastName": "Johnson",
+      "email": "smith@codingthesmartway.com",
+      "status": 2000
+    },
+    {
+      "providerId": 8,
+      "firstName": "Samuels",
+      "lastName": "Henry",
+      "email": "samuelshen@codingthesmartway.com",
+      "status": 2000
+    },
+    {
+      "providerId": 9,
+      "firstName": "Hayden",
+      "lastName": "Mathew",
+      "email": "mathew@codingthesmartway.com",
+      "status": 2000
+    },
+    {
+      "providerId": 10,
+      "firstName": "Christo",
+      "lastName": "Star",
+      "email": "star@codingthesmartway.com",
+      "status": 2000
+    }
+  ]
+}

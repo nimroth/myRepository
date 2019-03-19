@@ -1,0 +1,63 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+  <mat-card>
+    <form [formGroup]="dateValue" (ngSubmit)="submitDate()">
+      <!-- <div> -->
+        <mat-form-field style="margin-left: 10%;">
+          <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="fromPicker" formControlName="fromDate" placeholder="From Date" autocomplete="off">
+          <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
+          <mat-datepicker #fromPicker></mat-datepicker>
+          <mat-error *ngIf="dateValue.controls.fromDate.hasError('required')">From Date is required</mat-error>
+        </mat-form-field>
+      <!-- </div>
+      <div> -->
+        <mat-form-field style="margin-left: 5%;">
+          <input matInput [matDatepicker]="toPicker" formControlName="toDate" placeholder="To Date" autocomplete="off">
+          <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
+          <mat-datepicker #toPicker></mat-datepicker>
+          <mat-error *ngIf="dateValue.controls.toDate.hasError('required')">To Date is required</mat-error>
+        </mat-form-field>
+        <div style='padding-left: 10%;'>
+          <div class="checkbox-style">
+            <label formArrayName="orders" *ngFor="let order of dateValue.controls.orders.controls; let i = index">
+              <!-- <input type="checkbox" [formControlName]="i" value="{{orders[i].projectid}}" (click)="getValue()">{{orders[i].projectname}}<br> -->
+              <mat-checkbox value="{{orders[i].projectid}}" (change)="getValue(orders[i].projectid, $event)">{{orders[i].projectname}}</mat-checkbox><br>
+            </label>
+          </div>
+        </div>
+        <!-- <div style="text-align:center"> -->
+        <button type="submit" mat-raised-button color="primary" style="margin-left: 5%;">Apply</button>
+        <!-- </div> -->
+    </form>
+  </mat-card>
+  <mat-card *ngIf="showList">
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="userid">
+        <mat-header-cell *matHeaderCellDef> User ID </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.userid}} </mat-cell>
+      </ng-container>
+    
+      <ng-container matColumnDef="projectid">
+        <mat-header-cell *matHeaderCellDef> Project Id </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.projectid}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="projectname">
+          <mat-header-cell *matHeaderCellDef> Project Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.projectname}} </mat-cell>
+      </ng-container>
+    
+      <ng-container matColumnDef="sumvalue">
+        <mat-header-cell *matHeaderCellDef> Sum Value </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.sumvalue}} </mat-cell>
+      </ng-container>
+    
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+      </ng-container>
+    
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </mat-card>
+</div>

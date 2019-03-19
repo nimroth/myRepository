@@ -1,0 +1,14 @@
+.example-card {
+    min-height: 208px;
+    max-width: 355px;
+}
+
+.card-padding {
+    padding-top: 3%;
+    padding-left: 1%;
+}
+
+.text-overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

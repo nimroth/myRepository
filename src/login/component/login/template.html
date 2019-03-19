@@ -1,0 +1,40 @@
+<!-- <img class="logo" src="assets/images/logo_1.png"> -->
+<mat-card style="text-align:center">
+  <div class="login-card"> 
+    <div style="text-align:center">
+      <h2>
+        Sign In
+      </h2>
+
+    </div>
+    <form [formGroup] = "loginForm" class="example-form" (ngSubmit)="login()">
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <input matInput placeholder="Username" formControlName="username" autocomplete="off">
+        <mat-error *ngIf="errorMsg">{{errorMsg}}</mat-error>
+        <mat-error *ngIf="loginForm.controls.username.hasError('required')">
+          Username is <strong>required</strong>
+        </mat-error>
+        <!-- {{loginForm.controls.username.dirty | json}} -->
+        <!-- <mat-error><span *ngIf="loginForm.controls.username.dirty">White Space not allowed </span> -->
+          
+        <!-- </mat-error> -->
+      </mat-form-field>
+
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <input matInput placeholder="Password" type="password" formControlName="password"
+        required autocomplete="off" [type]="hide ? 'password' : 'text'">
+        <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+        <mat-error *ngIf="loginForm.controls.password.hasError('required')">
+          Password is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+
+      <div style="text-align:center">
+        <button type="submit" mat-raised-button style = "width: 60%" color="primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</mat-card>  

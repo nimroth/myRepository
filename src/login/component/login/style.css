@@ -1,0 +1,21 @@
+.logo {
+    margin: 16px;
+    width: 16%;
+    height: 10%;
+  }
+  
+  .login-card {
+    width: 30%;
+    height: auto;
+    margin: auto;
+    padding-top: 5%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  
+  button {
+    margin: 20px;
+  }
+  

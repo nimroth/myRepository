@@ -1,0 +1,6 @@
+.checkbox-style {
+    border: 1px solid;
+    width: 44%;
+    height: 240px;
+    overflow:scroll;
+}
